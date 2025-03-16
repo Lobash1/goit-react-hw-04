@@ -1,27 +1,43 @@
-import css from './SearchBar.module.css'
-import { Formik, Field, Form } from "formik"
+import { useState } from "react";
+import css from "./SearchBar.module.css";
+import { toast } from "react-hot-toast";
+import { BsSearchHeartFill } from "react-icons/bs";
 
-export default function SearchBar ({onSearch}) {
-    return (
-        <div>
-            <h2>SearchBar</h2>
-            <Formik
-            initialValues={{
-                topic: '',
-            }}
-            onSubmit={(values, actions) => {
-                onSearch(values.topic);
-                actions.resetForm();
-            }}
-        >
-            <Form className={css.form}>
-                <Field className={css.input} type="text" name="topic" />
-                <button className={css.button} type="submit">
-                    Search
-                </button>
-            </Form>
-        </Formik>
-        </div>
-    
-    )
+export default function SearchBar({ onSubmit }) {
+  const [search, setSearch] = useState("");
+
+  const handleInput = (event) => {
+    setSearch(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    if (!search.trim()) {
+      return toast.error("Please enter search term!");
+    }
+
+    onSubmit(search);
+  };
+
+  return (
+    <header className={css.header}>
+      <form onSubmit={handleSubmit} className={css.form}>
+        <BsSearchHeartFill className={css.icon} />
+        <input
+          value={search}
+          onChange={handleInput}
+          autoComplete="off"
+          autoFocus
+          placeholder="Search images and photos"
+          className={css.input}
+          type="text"
+        />
+
+        <button className={css.button} type="submit">
+          Search
+        </button>
+      </form>
+    </header>
+  );
 }
