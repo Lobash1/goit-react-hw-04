@@ -1,8 +1,3 @@
-
-
-// import css from "./ErrorMessage.modue.css";
-
-
-export default function ErrorMessage () {
-    return <h2>ErrorMessage</h2>
+export default function ErrorMessage({ message }) {
+    return <p>{message}</p>;
   }

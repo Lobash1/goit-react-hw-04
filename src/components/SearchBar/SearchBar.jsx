@@ -18,6 +18,7 @@ export default function SearchBar({ onSubmit }) {
     }
 
     onSubmit(search);
+    setSearch('');
   };
 
   return (
@@ -32,6 +33,7 @@ export default function SearchBar({ onSubmit }) {
           placeholder="Search images and photos"
           className={css.input}
           type="text"
+          name="search"
         />
 
         <button className={css.button} type="submit">
