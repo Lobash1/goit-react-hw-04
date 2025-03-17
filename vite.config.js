@@ -8,5 +8,7 @@ export default defineConfig({
     sourcemap: true,
     rollupOptions: {
       external: ['react-icons/bs'],
-  }
+    },
+  },
 })
+
